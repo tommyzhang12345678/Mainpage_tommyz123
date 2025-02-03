@@ -1,108 +1,68 @@
-// Search functionality
-const searchInput = document.querySelector('.search-box input');
-searchInput.addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const cards = document.querySelectorAll('.download-card');
-    
-    cards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+// File URL Configuration
+const fileURLs = {
+    'netscan-pro.zip': 'https://example.com/hackertools/netscan-pro.zip',
+    'cryptoshield.py': 'https://example.com/scripts/cryptoshield.py'
+};
+
+// Search Functionality
+document.querySelector('.search-box input').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('.download-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(term) ? 'block' : 'none';
     });
 });
 
-// Category filtering
-const categoryButtons = document.querySelectorAll('.category-btn');
-const downloadCards = document.querySelectorAll('.download-card');
-
-categoryButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // Remove active class from all buttons
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
+// Category Filtering
+document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         
         const category = this.dataset.category;
-        
-        // Filter cards based on category
-        downloadCards.forEach(card => {
-            const cardCategory = card.dataset.category;
-            if (category === 'all' || cardCategory === category) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+        document.querySelectorAll('.download-card').forEach(card => {
+            card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
         });
     });
 });
 
-// Real download functionality
-document.querySelectorAll('.download-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const card = this.closest('.download-card');
-        const progressBar = card.querySelector('.download-progress-bar');
-        const progressContainer = card.querySelector('.download-progress');
+// Download Manager
+document.querySelectorAll('.download-button').forEach(btn => {
+    btn.addEventListener('click', function() {
         const fileName = this.dataset.file;
+        const fileURL = fileURLs[fileName];
         
-        // Show progress bar
-        progressContainer.style.display = 'block';
-        
-        // Simulate download progress
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 10;
-            progressBar.style.width = `${Math.min(progress, 100)}%`;
-            
-            if (progress >= 100) {
-                clearInterval(interval);
-                
-                // Trigger actual file download
-                const blob = new Blob(['Simulated file content'], { type: 'application/octet-stream' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-                
-                // Update UI
-                progressContainer.style.display = 'none';
-                progressBar.style.width = '0%';
-                this.innerHTML = `<i class="fas fa-check"></i> Downloaded!`;
-                this.disabled = true;
-                
-                // Update download count
-                const downloadCount = card.querySelector('.fa-download').parentNode;
-                const count = parseInt(downloadCount.textContent) + 1;
-                downloadCount.innerHTML = `<i class="fas fa-download"></i> ${count.toLocaleString()}`;
-            }
-        }, 200);
-    });
-});
-
-// Floating download button (downloads all visible items)
-document.querySelector('.floating-download').addEventListener('click', () => {
-    const visibleCards = document.querySelectorAll('.download-card[style="display: block;"]');
-    visibleCards.forEach(card => {
-        const downloadButton = card.querySelector('.download-button');
-        if (!downloadButton.disabled) {
-            downloadButton.click();
+        if (!fileURL) {
+            alert('File not available!');
+            return;
         }
+
+        // Trigger download
+        const a = document.createElement('a');
+        a.href = fileURL;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Update download count
+        const countElement = this.closest('.download-card').querySelector('.fa-download').parentNode;
+        countElement.textContent = parseInt(countElement.textContent) + 1 + 'K';
     });
 });
 
-// Initialize cards with animation
-document.querySelectorAll('.download-card').forEach((card, index) => {
-    card.style.transform = `translateY(${20 * (index + 1)}px)`;
+// Floating Download Button
+document.querySelector('.floating-download').addEventListener('click', () => {
+    document.querySelectorAll('.download-card:not([style*="none"]) .download-button').forEach(btn => btn.click());
+});
+
+// Card Animation
+document.querySelectorAll('.download-card').forEach((card, i) => {
     card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
     setTimeout(() => {
-        card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        card.style.transform = 'translateY(0)';
+        card.style.transition = 'all 0.5s ease-out';
         card.style.opacity = '1';
-    }, 300 * index);
+        card.style.transform = 'translateY(0)';
+    }, 100 * i);
 });

@@ -3,63 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SparkHub - Download Center</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <title>Hackers101 - Download Hub</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Hacker101</h1>
-            <p>Next-Gen Digital Distribution Platform</p>
+            <h1>Hackers101</h1>
+            <p>Ethical Tools & Resources Repository</p>
         </div>
     </header>
 
     <nav>
         <div class="nav-container">
-            <div class="logo">SPARKHUB</div>
+            <div class="logo">HACKERS101</div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search 10,000+ assets...">
+                <input type="text" placeholder="Search 1,000+ security tools...">
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="category-filter">
-            <button class="category-btn active" data-category="all"><i class="fas fa-layer-group"></i> All</button>
-            <button class="category-btn" data-category="apps"><i class="fas fa-desktop"></i> Apps</button>
-            <button class="category-btn" data-category="assets"><i class="fas fa-paint-brush"></i> Assets</button>
-            <button class="category-btn" data-category="docs"><i class="fas fa-book"></i> Docs</button>
+            <button class="category-btn active" data-category="all"><i class="fas fa-ghost"></i> All</button>
+            <button class="category-btn" data-category="apps"><i class="fas fa-terminal"></i> Apps</button>
+            <button class="category-btn" data-category="tools"><i class="fas fa-tools"></i> Tools</button>
+            <button class="category-btn" data-category="scripts"><i class="fas fa-code"></i> Scripts</button>
+            <button class="category-btn" data-category="docs"><i class="fas fa-file-alt"></i> Docs</button>
         </div>
 
         <div class="download-grid">
-            <!-- Sample Download Items -->
-            <div class="download-card" data-category="apps" data-title="unity pro 2023">
+            <!-- Penetration Testing Tools -->
+            <div class="download-card" data-category="tools" data-title="network scanner">
                 <div class="card-header">
-                    <div class="card-icon"><i class="fab fa-unity"></i></div>
-                    <h3>Unity Pro 2023</h3>
+                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>NetScan Pro</h3>
                 </div>
-                <p>Complete game development suite with advanced 3D rendering capabilities.</p>
+                <p>Advanced network scanning utility with vulnerability detection.</p>
                 <div class="download-stats">
-                    <div class="stat-item"><i class="fas fa-download"></i> 12.4K</div>
-                    <div class="stat-item"><i class="fas fa-star"></i> 4.8</div>
-                    <div class="stat-item"><i class="fas fa-file-archive"></i> 2.1GB</div>
+                    <div class="stat-item"><i class="fas fa-download"></i> 24.6K</div>
+                    <div class="stat-item"><i class="fas fa-star"></i> 4.9</div>
+                    <div class="stat-item"><i class="fas fa-file-archive"></i> 86MB</div>
                 </div>
-                <button class="download-button" data-file="unity-pro.zip"><i class="fas fa-rocket"></i> Instant Download</button>
+                <button class="download-button" data-file="netscan-pro.zip"><i class="fas fa-download"></i> Download</button>
                 <div class="download-progress">
                     <div class="download-progress-bar"></div>
                 </div>
             </div>
 
-            <!-- Add more download cards here -->
+            <!-- Security Scripts -->
+            <div class="download-card" data-category="scripts" data-title="encryption script">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-lock"></i></div>
+                    <h3>CryptoShield.py</h3>
+                </div>
+                <p>Python script for AES-256 file encryption/decryption.</p>
+                <div class="download-stats">
+                    <div class="stat-item"><i class="fas fa-download"></i> 18.2K</div>
+                    <div class="stat-item"><i class="fas fa-star"></i> 4.7</div>
+                    <div class="stat-item"><i class="fas fa-file-code"></i> 12KB</div>
+                </div>
+                <button class="download-button" data-file="cryptoshield.py"><i class="fas fa-download"></i> Download</button>
+                <div class="download-progress">
+                    <div class="download-progress-bar"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="floating-download">
-        <i class="fas fa-cloud-download-alt"></i>
+        <i class="fas fa-download"></i>
     </div>
 
-    <script src="./js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
