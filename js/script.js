@@ -1,8 +1,41 @@
 // File URL Configuration
+// File URL Configuration
 const fileURLs = {
-    'netscan-pro.zip': 'https://example.com/hackertools/netscan-pro.zip',
-    'cryptoshield.py': 'https://example.com/scripts/cryptoshield.py'
+    // Add actual files here if needed
 };
+
+// Universal Click Handler
+document.querySelectorAll('.download-button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.download-card');
+        
+        // Update usage counter
+        const counter = card.querySelector('.fa-external-link-alt').parentNode;
+        const currentCount = parseInt(counter.textContent) || 0;
+        counter.textContent = `${(currentCount + 1).toLocaleString()}`;
+
+        // Handle different types
+        if (this.dataset.url) {
+            window.open(this.dataset.url, '_blank');
+        } else if (this.dataset.file) {
+            const a = document.createElement('a');
+            a.href = fileURLs[this.dataset.file];
+            a.download = this.dataset.file;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    });
+});
+
+// Floating Button - Open All Visible
+document.querySelector('.floating-download').addEventListener('click', () => {
+    document.querySelectorAll('.download-card:not([style*="none"]) .download-button').forEach(btn => {
+        btn.click();
+    });
+});
+
+// Rest of filtering and search code remains the same
 
 // Search Functionality
 document.querySelector('.search-box input').addEventListener('input', (e) => {

@@ -250,6 +250,7 @@ nav {
     --primary: #00ff88;
     --secondary: #009966;
     --accent: #ff5555;
+    --link-color: #8a2be2;
     --dark: #0a0a0a;
     --light: #121212;
 }
@@ -266,6 +267,25 @@ body {
     color: #ffffff;
     min-height: 100vh;
 }
+
+/* Link-specific styles */
+.link-button {
+    background: linear-gradient(45deg, var(--link-color), #6a0dad) !important;
+}
+
+.link-button:hover {
+    box-shadow: 0 0 15px rgba(138,43,226,0.4) !important;
+}
+
+.download-card[data-category="resources"] {
+    border-color: var(--link-color);
+}
+
+.download-card[data-category="extensions"] {
+    border-color: #4285f4;
+}
+
+/* Rest of previous CSS remains the same */
 
 header {
     background: linear-gradient(45deg, var(--dark), var(--secondary));
