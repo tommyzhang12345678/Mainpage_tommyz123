@@ -17,6 +17,8 @@ searchInput.addEventListener('input', function(e) {
 
 // Category filtering
 const categoryButtons = document.querySelectorAll('.category-btn');
+const downloadCards = document.querySelectorAll('.download-card');
+
 categoryButtons.forEach(button => {
     button.addEventListener('click', function() {
         // Remove active class from all buttons
@@ -24,10 +26,11 @@ categoryButtons.forEach(button => {
         this.classList.add('active');
         
         const category = this.dataset.category;
-        const cards = document.querySelectorAll('.download-card');
         
-        cards.forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
+        // Filter cards based on category
+        downloadCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            if (category === 'all' || cardCategory === category) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';

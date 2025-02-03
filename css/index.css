@@ -218,3 +218,30 @@ nav {
         gap: 1rem;
     }
 }
+
+.category-filter {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-btn.active {
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(108,92,231,0.4);
+}
