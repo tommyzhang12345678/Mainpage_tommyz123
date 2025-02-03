@@ -26,28 +26,37 @@ document.querySelectorAll('.category-btn').forEach(btn => {
     });
 });
 
-// Download Manager
+// Modified Download Manager
 document.querySelectorAll('.download-button').forEach(btn => {
     btn.addEventListener('click', function() {
-        const fileName = this.dataset.file;
-        const fileURL = fileURLs[fileName];
+        const card = this.closest('.download-card');
         
-        if (!fileURL) {
-            alert('File not available!');
-            return;
+        // Update download count regardless of type
+        const countElement = card.querySelector('.fa-download').parentNode;
+        let count = parseInt(countElement.textContent);
+        countElement.textContent = (count + 1) + 'K';
+
+        // Handle either URL or File download
+        if (this.dataset.url) {
+            // Open external link in new tab
+            window.open(this.dataset.url, '_blank');
+        } else if (this.dataset.file) {
+            // Existing file download logic
+            const fileName = this.dataset.file;
+            const fileURL = fileURLs[fileName];
+            
+            if (!fileURL) {
+                alert('File not available!');
+                return;
+            }
+
+            const a = document.createElement('a');
+            a.href = fileURL;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
-
-        // Trigger download
-        const a = document.createElement('a');
-        a.href = fileURL;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        // Update download count
-        const countElement = this.closest('.download-card').querySelector('.fa-download').parentNode;
-        countElement.textContent = parseInt(countElement.textContent) + 1 + 'K';
     });
 });
 
