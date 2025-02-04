@@ -250,3 +250,51 @@ nav {
         gap: 1rem;
     }
 }
+
+/* Grid Layout for Two Cards per Row */
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Ensure Cards Have Equal Height */
+.download-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+/* Make Buttons Align at the Bottom */
+.download-card {
+    justify-content: space-between; /* Push button to the bottom */
+}
+
+/* Button Styling */
+.download-button {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    width: 100%;
+    justify-content: center;
+    margin-top: auto; /* Push button to the bottom */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .download-grid {
+        grid-template-columns: 1fr; /* One column on small screens */
+    }
+}
