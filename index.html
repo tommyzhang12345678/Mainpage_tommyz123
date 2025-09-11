@@ -173,30 +173,30 @@
 
     <script src="./js/script.js">
         function checkPassword(url) {
-    const userInput = prompt("Please enter the password:");
-    if (userInput === null) {
-        alert("Password entry cancelled.");
+            const userInput = prompt("Please enter the password:");
+            if (userInput === null) {
+            alert("Password entry cancelled.");
         return;
-    }
-    fetch('/password.txt')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch password file');
-            }
-            return response.text();
-        })
-        .then(storedPassword => {
-            if (userInput === storedPassword.trim()) {
-                alert("Password correct! Redirecting...");
-                window.location.href = url;
-            } else {
-                alert("Incorrect password!");
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Error fetching password file. Please try again later.");
-        });
+        }
+        fetch('/password.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch password file');
+                }
+                return response.text();
+            })
+            .then(storedPassword => {
+                if (userInput === storedPassword.trim()) {
+                    alert("Password correct! Redirecting...");
+                    window.location.href = url;
+                } else {
+                    alert("Incorrect password!");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Error fetching password file. Please try again later.");
+            });
 }
     </script>
 </body>
