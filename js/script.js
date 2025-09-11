@@ -39,11 +39,11 @@ document.querySelectorAll('.download-button').forEach(btn => {
 });
 
 // Floating Button - Open All Visible Links
-document.querySelector('.floating-download').addEventListener('click', () => {
-    document.querySelectorAll('.download-card:not([style*="none"]) .download-button').forEach(btn => {
-        btn.click();
-    });
-});
+//document.querySelector('.floating-download').addEventListener('click', () => {
+  //  document.querySelectorAll('.download-card:not([style*="none"]) .download-button').forEach(btn => {
+    //    btn.click();
+    //});
+//});
 
 // Search Functionality
 document.querySelector('.search-box input').addEventListener('input', (e) => {
@@ -91,7 +91,7 @@ function checkPassword(url) {
     fetch('/password.txt')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to get password file');
+                throw new Error('Failed to fetch password file');
             }
             return response.text();
         })
