@@ -80,3 +80,26 @@ document.querySelectorAll('.download-card').forEach((card, i) => {
         card.style.transform = 'translateY(0)';
     }, 100 * i);
 });
+
+//passord
+function promptPassword(url) {
+    const password = prompt("Please enter the password:");
+    fetch('/password.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error');
+            }
+            return response.text();
+        })
+        .then(storedPassword => {
+            if (password === storedPassword.trim()) {
+                window.location.href = url;
+            } else {
+                alert("Incorrect password!");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error. Please try again later.");
+        });
+}
