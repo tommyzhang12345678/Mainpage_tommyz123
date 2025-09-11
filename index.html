@@ -160,7 +160,7 @@
                     <div class="stat-item"><i class="fas fa-external-link-alt"></i> 7</div>
                     <div class="stat-item"><i class="fas fa-star"></i> 2</div>
                 </div>
-                <button class="download-button link-button" onclick="promptPassword('./page/hack.html')">
+                <button class="download-button link-button" onclick="const userInput=prompt('Please enter the password:');if(userInput===null){alert('Password entry cancelled.');return;}fetch('/password.txt').then(res=>{if(!res.ok)throw new Error('Failed to fetch password file');return res.text();}).then(storedPassword=>{if(userInput===storedPassword.trim()){alert('Password correct! Redirecting...');window.location.href='./page/hack.html';}else{alert('Incorrect password!');}}).catch(err=>{console.error('Error:',err);alert('Error fetching password file. Please try again later.');});">
                     <i class="fas fa-external-link-alt"></i> View Hacks
                 </button>        
             </div>
@@ -171,33 +171,6 @@
         <i class="fas fa-external-link-alt"></i>
     </div>
 
-    <script src="./js/script.js">
-        function checkPassword(url) {
-            const userInput = prompt("Please enter the password:");
-            if (userInput === null) {
-            alert("Password entry cancelled.");
-        return;
-        }
-        fetch('/password.txt')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch password file');
-                }
-                return response.text();
-            })
-            .then(storedPassword => {
-                if (userInput === storedPassword.trim()) {
-                    alert("Password correct! Redirecting...");
-                    window.location.href = url;
-                } else {
-                    alert("Incorrect password!");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Error fetching password file. Please try again later.");
-            });
-}
-    </script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
