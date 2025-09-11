@@ -82,17 +82,22 @@ document.querySelectorAll('.download-card').forEach((card, i) => {
 });
 
 //passord
-function promptPassword(url) {
-    const password = prompt("Please enter the password:");
+function checkPassword(url) {
+    const userInput = prompt("Please enter the password:");
+    if (userInput === null) {
+        alert("Password entry cancelled.");
+        return;
+    }
     fetch('/password.txt')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error');
+                throw new Error('Failed to get password file');
             }
             return response.text();
         })
         .then(storedPassword => {
-            if (password === storedPassword.trim()) {
+            if (userInput === storedPassword.trim()) {
+                alert("Password correct! Redirecting...");
                 window.location.href = url;
             } else {
                 alert("Incorrect password!");
@@ -100,6 +105,6 @@ function promptPassword(url) {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("Error. Please try again later.");
+            alert("Error fetching password file. Please try again later.");
         });
 }
