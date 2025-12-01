@@ -6,6 +6,8 @@
     <title>Hackers101</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4127793373784503"
+     crossorigin="anonymous"></script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4YBZFWY4B"></script>
@@ -163,6 +165,23 @@
                 <button class="download-button link-button" onclick="const userInput=prompt('Please enter the password:');if(userInput===null){alert('Password entry cancelled.');return;}fetch('/password.txt').then(res=>{if(!res.ok)throw new Error('Failed to fetch password file');return res.text();}).then(storedPassword=>{if(userInput===storedPassword.trim()){alert('Password correct! Redirecting...');window.location.href='./page/hack.html';}else{alert('Incorrect password!');}}).catch(err=>{console.error('Error:',err);alert('Error fetching password file. Please try again later.');});">
                     <i class="fas fa-external-link-alt"></i> View Hacks
                 </button>        
+            </div>
+
+            <!-- Die -->
+            <div class="download-card" data-category="resources" data-title="revision history">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-history"></i></div>
+                    <h3>Hack Dice game</h3>
+                </div>
+                <p>Change the outcomes of the dice: [amount]+ space + [number] + tab + space</p>
+                <div class="download-stats">
+                    <div class="stat-item"><i class="fas fa-external-link-alt"></i> 0K</div>
+                    <div class="stat-item"><i class="fas fa-star"></i> 0</div>
+                    <div class="stat-item"><i class="fas fa-folder-open"></i> Visit</div>
+                </div>
+                <button class="download-button link-button" onclick="window.location.href='https://die.tommyz123.dpdns.org'">
+                    <i class="fas fa-external-link-alt"></i> Route 1
+                </button>            
             </div>
 
         </div>
